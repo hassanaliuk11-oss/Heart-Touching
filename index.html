@@ -7,87 +7,40 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Prata&family=Inter:wght@300;400;600&family=Tenor+Sans&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-deep: #0f0a07;
-            --amber-gold: #fbbf24;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border-glass: rgba(255, 255, 255, 0.08);
-        }
-        body {
-            background-color: var(--bg-deep);
-            color: #e5e7eb;
-            font-family: 'Inter', sans-serif;
-            background-image: radial-gradient(circle at 20% 30%, rgba(146, 64, 14, 0.15) 0%, transparent 40%);
-            overflow-x: hidden;
-        }
+        :root { --bg-deep: #0f0a07; --amber-gold: #fbbf24; --glass: rgba(255, 255, 255, 0.03); --border-glass: rgba(255, 255, 255, 0.08); }
+        body { background-color: var(--bg-deep); color: #e5e7eb; font-family: 'Inter', sans-serif; background-image: radial-gradient(circle at 20% 30%, rgba(146, 64, 14, 0.15) 0%, transparent 40%); overflow-x: hidden; }
         .font-elegant { font-family: 'Prata', serif; }
         .font-modern { font-family: 'Tenor Sans', sans-serif; text-transform: uppercase; letter-spacing: 0.2em; }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .glass-panel {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-glass);
-            transition: all 0.3s ease;
-        }
-        .glass-panel:hover {
-            border-color: var(--amber-gold);
-            background: rgba(251, 191, 36, 0.05);
-        }
-        .image-container::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, var(--bg-deep), transparent);
-        }
-        .gold-line {
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--amber-gold), transparent);
-            width: 100px;
-            margin: 1.5rem auto;
-        }
-        * { font-style: normal !important; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .glass-panel { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--border-glass); }
+        .music-card { position: fixed; bottom: 20px; right: 20px; z-index: 100; background: rgba(0,0,0,0.6); border: 1px solid var(--amber-gold); padding: 10px 20px; border-radius: 50px; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(10px); }
+        .share-btn { margin-top: 15px; font-size: 11px; color: var(--amber-gold); border: 1px solid rgba(251, 191, 36, 0.3); padding: 5px 15px; border-radius: 20px; transition: 0.3s; cursor: pointer; }
+        .share-btn:hover { background: var(--amber-gold); color: black; }
+        .image-container::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-deep), transparent); }
     </style>
 </head>
 <body>
 
-    <section class="relative h-screen flex flex-col items-center justify-center text-center px-6">
-        <div class="relative z-10">
-            <span class="font-modern text-amber-500 text-xs mb-4 block">Personal Anthology</span>
-            <h1 class="font-elegant text-5xl md:text-8xl text-white mb-6">The Heart <br> <span class="text-amber-500">Touching</span> Diary</h1>
-            <div class="gold-line"></div>
-            <p class="font-modern text-amber-200/60 text-sm tracking-[0.4em]">Hassan Jatoi</p>
-        </div>
+    <div class="music-card">
+        <span class="text-[10px] font-modern text-amber-500">Soul Music</span>
+        <audio id="bg-music" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg"></audio>
+        <button onclick="toggleMusic()" class="bg-amber-500 text-black rounded-full p-2" id="music-btn">▶</button>
+    </div>
+
+    <section class="h-screen flex flex-col items-center justify-center text-center px-6">
+        <span class="font-modern text-amber-500 text-xs mb-4 block">Personal Anthology</span>
+        <h1 class="font-elegant text-5xl md:text-8xl text-white mb-6">The Heart <br> <span class="text-amber-500">Touching</span> Diary</h1>
+        <p class="font-modern text-amber-200/60 text-sm tracking-[0.4em]">Hassan Jatoi</p>
     </section>
 
     <main class="max-w-6xl mx-auto px-6 pb-32">
-        <div id="diary-wall" class="space-y-32">
-            </div>
+        <div id="diary-wall" class="space-y-32"></div>
     </main>
 
-    <footer class="py-20 text-center border-t border-amber-900/20">
-        <h2 class="font-elegant text-3xl text-amber-500 mb-4">Hassan Jatoi</h2>
-        <p class="font-modern text-[10px] text-gray-500">Every word is a heartbeat. &copy; 2024</p>
-    </footer>
-
     <script>
+        // --- IS LIST MEIN NEECHAY ADD KARTE JAYEIN ---
         const diaryEntries = [
-            // Pehle wali entries
-            { title: "Late Night Weight", content: "It is past three and my eyes are closing as if death is calling me softly", img: "1502134249126-9f3755a50d78" },
-            { title: "World of Illusion", content: "This world painted with colors is nothing but a beautiful lie", img: "1490730141103-6cac27aaab94" },
-            { title: "Faith After Ruin", content: "Even shattered belief still whispers the name of God", img: "1517411032315-54ef2cb783bb" },
-            { title: "Betrayed Trust", content: "Trust breaks quietly so the world does not hear the sound", img: "1516585317482-8f9f952c0197" },
-            { title: "Lonely Wings", content: "Some birds are born to fly alone not because they want to but because they must", img: "1486577322971-da0c27303f8a" },
-            
-            // Aapki nayi bheji hui entries
             { title: "Hidden Truth", content: "Mystery wraps around my heart like fog that never lifts", img: "1477346611039-2e8a18632f7b" },
             { title: "Fading Echoes", content: "Voices of the past linger where memories refuse to rest", img: "1508700115892-45ecd05ae2ad" },
             { title: "Silent Betrayal", content: "Someone smiles while shadows carry the knife behind their back", img: "1516585317482-8f9f952c0197" },
@@ -96,52 +49,147 @@
             { title: "Shattered Illusions", content: "Fiction turns real when imagination betrays reality", img: "1490730141103-6cac27aaab94" },
             { title: "Emotional Storm", content: "Tears fall silently because no one hears the heart’s thunder", img: "1516589174468-471954f91d0e" },
             { title: "Vanishing Paths", content: "Choices disappear like mist and leave only doubts behind", img: "1506126613408-da7969b5f2eb" },
-            { title: "Faithful Ghost", content: "Even lost spirits keep promises that humans forget", img: "1529070538574-13e16734455a" },
-            { title: "Deep Reflection", content: "Philosophy carves its lessons into the marrow of my being", img: "1518081461904-9d8f136351c2" },
-            { title: "Hidden Desire", content: "Emotions bloom in secret gardens where fear cannot enter", img: "1516585367482-1214f07d396a" },
-            { title: "Silent Witness", content: "The world watches but does not understand the silent scream", img: "1499209974771-233a8328551e" },
-            { title: "Broken Compass", content: "Life guides me nowhere and yet I follow its invisible hand", img: "1502134249126-9f3755a50d78" },
-            { title: "Endless Horizon", content: "Mystery and hope meet at the edge of the sea I cannot cross", img: "1507525428034-b723cf961d3e" },
 
-            // [--- COPY_HERE: Agli martaba nayi entry is line ke upar paste karein ---]
+          { 
+    title: "The Weight of Silence", 
+    content: "Silence sits beside me like an old wound. It knows my name better than voices do. Every quiet moment carries a memory that refuses to sleep.", 
+    img: "1499209974771-233a8328551e" 
+},
+{ 
+    title: "Letters Written on Wet Sand", 
+    content: "I wrote your name where waves could read. The sea answered before you did. Each letter drowned softly like promises that feared staying.", 
+    img: "1507525428034-b723cf961d3e" 
+},
+{ 
+    title: "The Smile That Lied", 
+    content: "Your smile learned acting before love. It spoke warmth and carried knives. I trusted the light on your face, not knowing darkness rehearsed behind it.", 
+    img: "1516585317482-8f9f952c0197" 
+},
+{ 
+    title: "Loving You Quietly", 
+    content: "I loved you without noise or claims, like a prayer afraid of being heard. My heart spoke in small sacrifices you never noticed.", 
+    img: "1516585367482-1214f07d396a" 
+},
+{ 
+    title: "The House That Breathes at Night", 
+    content: "Walls whisper names I never told. Shadows move with borrowed memories. Something alive waits in corners, and it knows I am not alone.", 
+    img: "1509249023139-1d449965eb60" 
+},
+{ 
+    title: "Pain Teaches Better Than Love", 
+    content: "Love promised comfort and left early. Pain stayed and explained everything. Its lessons were slow and cruel, but they never lied.", 
+    img: "1513297856402-02c03630dc1b" 
+},
+{ 
+    title: "The Sea Knows My Secrets", 
+    content: "I speak where no one interrupts. The sea keeps my confessions safe. Salt understands tears, and horizons don’t judge.", 
+    img: "1505118380757-91f5f5632de0" 
+},
+{ 
+    title: "Betrayed by a Promise", 
+    content: "You wrapped lies in future tense and called it hope. Trust broke quietly like glass under water—no sound, just damage.", 
+    img: "1506461973418-490e5a88c224" 
+},
+{ 
+    title: "You Felt Like Home", 
+    content: "You felt like a place I belonged before I knew what belonging meant. Now every place feels temporary because you left first.", 
+    img: "1476136230153-c41652377a7f" 
+},
+{ 
+    title: "Midnight Has a Memory", 
+    content: "Night remembers what I hide. It opens old rooms in my chest. Sleep avoids my name because truth wakes up here.", 
+    img: "1504198453319-5ce911baf5ea" }
+           
+           { 
+    title: "A Heart That Forgot How to Hope", 
+    content: "Hope used to knock softly\nNow even silence feels loud\nMy heart waits without direction\nLike a train with no tracks\nDreams sit folded in corners\nAfraid of being opened\nFaith looks tired these days\nIt learned loss too early", 
+    img: "1507608830320-3dec43402779" 
+},
+{ 
+    title: "Crying Without Sound", 
+    content: "Tears learned to stay inside\nBecause the world got impatient\nMy chest floods quietly\nWhile my face pretends strength\nNo one hears internal storms\nThey clap for my calm", 
+    img: "1516585367482-1214f07d396a" 
+},
+{ 
+    title: "The Loneliness After Goodbye", 
+    content: "After you left\nEven air felt unfamiliar\nRooms forgot my name\nTime stopped asking questions", 
+    img: "1476136230153-c41652377a7f" 
+},
+{ 
+    title: "Funeral of My Dreams", 
+    content: "I carried my dreams on my shoulders\nLike bodies no one claimed\nThey were young once\nFull of color and noise\nNow they sleep without future\nWrapped in almosts and maybes\nNo prayers were spoken\nOnly silence attended", 
+    img: "1509249023139-1d449965eb60" 
+},
+{ 
+    title: "A Room Full of Absence", 
+    content: "Absence has weight\nIt sits where you were\nChairs remember your shape\nWalls keep unfinished sentences\nThe room breathes slowly\nAs if afraid to forget", 
+    img: "1499209974771-233a8328551e" 
+},
+{ 
+    title: "Sadness Wears My Name", 
+    content: "Sadness answers when I am called\nIt knows my walk and voice\nPeople confuse us often\nWe look too much alike", 
+    img: "1513297856402-02c03630dc1b" 
+},
+{ 
+    title: "Nights That Refuse to End", 
+    content: "Night stretches like a wound\nRefusing to close\nClocks lose their authority\nWhen thoughts take control\nSleep negotiates and fails\nMemories keep rehearsing pain\nDarkness learns patience\nAnd waits with me", 
+    img: "1504198453319-5ce911baf5ea" 
+},
+{ 
+    title: "Love Turned Into Ash", 
+    content: "Love burned beautifully once\nWarming every corner of me\nThen it chose silence\nAnd called it ending\nNow only ash remains\nStill warm with memory", 
+    img: "1464618663641-bbdd760ae84a" } 
+            
+
+
+
+
+
+
+
+        
+            // AB AGAR NAYI ENTRY ADD KARNI HO TO YAHAN PASTE KAREIN:
+            // { title: "Aapka Title", content: "Aapki Line", img: "PhotoID" },
 
         ];
+        // --- LIST KHATAM ---
+
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            if (music.paused) { music.play(); btn.innerText = 'II'; } 
+            else { music.pause(); btn.innerText = '▶'; }
+        }
+
+        function shareWhatsApp(title, content) {
+            const text = `*${title}*\n\n"${content}"\n\n_Read more on Hassan Jatoi's Diary_`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
 
         function renderEntries() {
             const container = document.getElementById('diary-wall');
-            if (!container) return;
-
             diaryEntries.forEach((entry, idx) => {
                 const isEven = idx % 2 === 0;
-                const section = document.createElement('div');
-                section.className = `reveal flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`;
-                
-                section.innerHTML = `
-                    <div class="w-full md:w-1/2 relative group overflow-hidden rounded-2xl shadow-2xl">
-                        <div class="image-container relative aspect-[4/3]">
-                            <img src="https://images.unsplash.com/photo-${entry.img}?auto=format&fit=crop&q=80&w=1000" 
-                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                                 onerror="this.src='https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000'">
+                const div = document.createElement('div');
+                div.className = `reveal flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`;
+                div.innerHTML = `
+                    <div class="w-full md:w-1/2 overflow-hidden rounded-2xl relative">
+                        <div class="image-container aspect-[4/3]">
+                            <img src="https://images.unsplash.com/photo-${entry.img}?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale">
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 text-center ${isEven ? 'md:text-left' : 'md:text-right'}">
-                        <span class="font-modern text-amber-600 text-[10px] mb-2 block">Entry No. ${idx + 1}</span>
-                        <h2 class="font-elegant text-3xl md:text-5xl text-white mb-6">${entry.title}</h2>
-                        <div class="glass-panel p-8 rounded-xl">
-                            <p class="text-xl md:text-2xl leading-relaxed text-gray-200 font-light italic">"${entry.content}"</p>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(section);
+                        <h2 class="font-elegant text-3xl text-white mb-4">${entry.title}</h2>
+                        <div class="glass-panel p-6 rounded-xl italic text-gray-300">"${entry.content}"</div>
+                        <button onclick="shareWhatsApp('${entry.title}', '${entry.content}')" class="share-btn">Share on WhatsApp</button>
+                    </div>`;
+                container.appendChild(div);
             });
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
             }, { threshold: 0.1 });
-
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
-
         document.addEventListener('DOMContentLoaded', renderEntries);
     </script>
 </body>
