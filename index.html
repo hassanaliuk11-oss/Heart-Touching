@@ -22,6 +22,7 @@
         }
         .font-elegant { font-family: 'Prata', serif; }
         .font-modern { font-family: 'Tenor Sans', sans-serif; text-transform: uppercase; letter-spacing: 0.2em; }
+        
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -35,6 +36,11 @@
             background: var(--glass);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-glass);
+            transition: all 0.3s ease;
+        }
+        .glass-panel:hover {
+            border-color: var(--amber-gold);
+            background: rgba(251, 191, 36, 0.05);
         }
         .image-container::after {
             content: '';
@@ -67,94 +73,75 @@
             </div>
     </main>
 
-    <footer class="py-20 text-center border-t border-amber-900/20 text-gray-500">
-        <p>&copy; 2024 Hassan Jatoi. Every word is a heartbeat.</p>
+    <footer class="py-20 text-center border-t border-amber-900/20">
+        <h2 class="font-elegant text-3xl text-amber-500 mb-4">Hassan Jatoi</h2>
+        <p class="font-modern text-[10px] text-gray-500">Every word is a heartbeat. &copy; 2024</p>
     </footer>
 
     <script>
-        // All your entries merged into ONE array
         const diaryEntries = [
+            // Pehle wali entries
             { title: "Late Night Weight", content: "It is past three and my eyes are closing as if death is calling me softly", img: "1502134249126-9f3755a50d78" },
             { title: "World of Illusion", content: "This world painted with colors is nothing but a beautiful lie", img: "1490730141103-6cac27aaab94" },
             { title: "Faith After Ruin", content: "Even shattered belief still whispers the name of God", img: "1517411032315-54ef2cb783bb" },
             { title: "Betrayed Trust", content: "Trust breaks quietly so the world does not hear the sound", img: "1516585317482-8f9f952c0197" },
-            { title: "Lonely Wings", content: "Some birds are born to fly alone not because they want to", img: "1486577322971-da0c27303f8a" },
-            { title: "Cold Love", content: "Love turns cold when truth is no longer welcomed", img: "1483366759022-7b75135c75df" },
-            { title: "Waiting Soul", content: "The soul keeps waiting even when hope has learned to walk away", img: "1507608830320-3dec43402779" },
-            { title: "Unseen Tears", content: "Tears fall inward where no one thinks to look", img: "1516585367482-1214f07d396a" },
-            { title: "Broken Promise", content: "Promises die slowly pretending they are only asleep", img: "1456965159020-f4b62f5f14e4" },
-            { title: "Devoted Pain", content: "Pain becomes loyal when everyone else leaves", img: "1513297856402-02c03630dc1b" },
-            { title: "Night Witness", content: "The night remembers what daylight denies", img: "1504198453319-5ce911baf5ea" },
-            { title: "Distant Shore", content: "I stand by the sea talking to a future that never answers", img: "1507525428034-b723cf961d3e" },
-            { title: "Silent Faith", content: "Faith stays awake even when prayers fall asleep", img: "1509062522246-3755977927d7" },
-            { title: "Last Light", content: "Some light remains only to teach darkness its limits", img: "1464618663641-bbdd760ae84a" },
-            { title: "The Prison of Love", content: "Even if the birds of love are set free, they remain prisoners of their own longing.", img: "1516231690615-ca3dc4a1574b" },
-            { title: "Fear of Death", content: "When the angels of death arrive, the soul shivers. A shadow in the silent night.", img: "1509249023139-1d449965eb60" },
-            { title: "Hidden Pain", content: "The fire of the heart burns unseen. A storm rages behind calm eyes.", img: "1516589174468-471954f91d0e" },
-            { title: "Shadows of Regret", content: "Every choice leaves a shadow behind. Mistakes whisper in the corners of the mind.", img: "1475711718103-91373d634221" },
-            { title: "Dreams That Fade", content: "Night holds dreams like fragile glass. Morning light shatters them without mercy.", img: "1532767153582-b1a0e5145009" }
+            { title: "Lonely Wings", content: "Some birds are born to fly alone not because they want to but because they must", img: "1486577322971-da0c27303f8a" },
             
-{ title: "Hidden Truth", content: "Mystery wraps around my heart like fog that never lifts", img: "1477346611039-2e8a18632f7b" },
-{ title: "Fading Echoes", content: "Voices of the past linger where memories refuse to rest", img: "1508700115892-45ecd05ae2ad" },
-{ title: "Silent Betrayal", content: "Someone smiles while shadows carry the knife behind their back", img: "1516585317482-8f9f952c0197" },
-{ title: "Lonely Wanderer", content: "I walk through streets where the soul feels heavier than the body", img: "1476136230153-c41652377a7f" },
-{ title: "Eternal Questions", content: "Philosophy whispers why we love when love is only pain", img: "1481627834876-b7833e8f5570" },
-{ title: "Shattered Illusions", content: "Fiction turns real when imagination betrays reality", img: "1490730141103-6cac27aaab94" },
-{ title: "Emotional Storm", content: "Tears fall silently because no one hears the heart’s thunder", img: "1516589174468-471954f91d0e" },
-{ title: "Vanishing Paths", content: "Choices disappear like mist and leave only doubts behind", img: "1506126613408-da7969b5f2eb" },
-{ title: "Faithful Ghost", content: "Even lost spirits keep promises that humans forget", img: "1529070538574-13e16734455a" },
-{ title: "Deep Reflection", content: "Philosophy carves its lessons into the marrow of my being", img: "1518081461904-9d8f136351c2" },
-{ title: "Hidden Desire", content: "Emotions bloom in secret gardens where fear cannot enter", img: "1516585367482-1214f07d396a" },
-{ title: "Silent Witness", content: "The world watches but does not understand the silent scream", img: "1499209974771-233a8328551e" },
-{ title: "Broken Compass", content: "Life guides me nowhere and yet I follow its invisible hand", img: "1502134249126-9f3755a50d78" },
-{ title: "Endless Horizon", content: "Mystery and hope meet at the edge of the sea I cannot cross", img: "1507525428034-b723cf961d3e" }
-  { title: "Wounded Soul", content: "The soul doesn't bleed red; it bleeds silence that no one can hear.", img: "1516589174468-471954f91d0e" },
-{ title: "Ghost of Love", content: "Love left the house long ago, but the scent of its memories still lingers in the hallways.", img: "1509249023139-1d449965eb60" },
-{ title: "Fragile Breath", content: "Every breath is a borrowed second from a life that isn't truly mine.", img: "1506461973418-490e5a88c224" },
-{ title: "Ink of Tears", content: "I write with the ink of my heart because the tongue has forgotten how to speak.", img: "1455390582262-044cdead277a" },
-{ title: "Shattered Mirror", content: "When I look in the mirror, I see a thousand pieces of a man I used to be.", img: "1500000000000" },
-{ title: "Deserted Heart", content: "My heart is a vast desert where only the echoes of your name survive the heat.", img: "1473580044153-5d9624bb226a" },
-{ title: "The Last Prayer", content: "If I die tonight, let my last prayer be a witness that I tried to stay kind in a cruel world.", img: "1507608830320-3dec43402779" },
-{ title: "Weight of Words", content: "Some words are so heavy that they sink into the soul and never reach the lips.", img: "1499209974771-233a8328551e" },
-{ title: "Cold Moonlight", content: "The moon watches my tears tonight, cold and indifferent, just like the world.", img: "1532767153582-b1a0e5145009" },
-{ title: "Final Horizon", content: "One day the shore will call, and I will walk into the waves without looking back.", img: "1505118380757-91f5f5632de0" }      
-      
+            // Aapki nayi bheji hui entries
+            { title: "Hidden Truth", content: "Mystery wraps around my heart like fog that never lifts", img: "1477346611039-2e8a18632f7b" },
+            { title: "Fading Echoes", content: "Voices of the past linger where memories refuse to rest", img: "1508700115892-45ecd05ae2ad" },
+            { title: "Silent Betrayal", content: "Someone smiles while shadows carry the knife behind their back", img: "1516585317482-8f9f952c0197" },
+            { title: "Lonely Wanderer", content: "I walk through streets where the soul feels heavier than the body", img: "1476136230153-c41652377a7f" },
+            { title: "Eternal Questions", content: "Philosophy whispers why we love when love is only pain", img: "1481627834876-b7833e8f5570" },
+            { title: "Shattered Illusions", content: "Fiction turns real when imagination betrays reality", img: "1490730141103-6cac27aaab94" },
+            { title: "Emotional Storm", content: "Tears fall silently because no one hears the heart’s thunder", img: "1516589174468-471954f91d0e" },
+            { title: "Vanishing Paths", content: "Choices disappear like mist and leave only doubts behind", img: "1506126613408-da7969b5f2eb" },
+            { title: "Faithful Ghost", content: "Even lost spirits keep promises that humans forget", img: "1529070538574-13e16734455a" },
+            { title: "Deep Reflection", content: "Philosophy carves its lessons into the marrow of my being", img: "1518081461904-9d8f136351c2" },
+            { title: "Hidden Desire", content: "Emotions bloom in secret gardens where fear cannot enter", img: "1516585367482-1214f07d396a" },
+            { title: "Silent Witness", content: "The world watches but does not understand the silent scream", img: "1499209974771-233a8328551e" },
+            { title: "Broken Compass", content: "Life guides me nowhere and yet I follow its invisible hand", img: "1502134249126-9f3755a50d78" },
+            { title: "Endless Horizon", content: "Mystery and hope meet at the edge of the sea I cannot cross", img: "1507525428034-b723cf961d3e" },
+
+            // [--- COPY_HERE: Agli martaba nayi entry is line ke upar paste karein ---]
+
+        ];
+
         function renderEntries() {
             const container = document.getElementById('diary-wall');
             if (!container) return;
 
             diaryEntries.forEach((entry, idx) => {
                 const isEven = idx % 2 === 0;
-                const div = document.createElement('div');
-                div.className = `reveal flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`;
+                const section = document.createElement('div');
+                section.className = `reveal flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`;
                 
-                div.innerHTML = `
-                    <div class="w-full md:w-1/2 overflow-hidden rounded-2xl shadow-2xl relative group">
-                        <div class="image-container aspect-[4/3]">
+                section.innerHTML = `
+                    <div class="w-full md:w-1/2 relative group overflow-hidden rounded-2xl shadow-2xl">
+                        <div class="image-container relative aspect-[4/3]">
                             <img src="https://images.unsplash.com/photo-${entry.img}?auto=format&fit=crop&q=80&w=1000" 
-                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
                                  onerror="this.src='https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000'">
                         </div>
                     </div>
-                    <div class="w-full md:w-1/2 ${isEven ? 'md:text-left' : 'md:text-right'} text-center">
+                    <div class="w-full md:w-1/2 text-center ${isEven ? 'md:text-left' : 'md:text-right'}">
                         <span class="font-modern text-amber-600 text-[10px] mb-2 block">Entry No. ${idx + 1}</span>
                         <h2 class="font-elegant text-3xl md:text-5xl text-white mb-6">${entry.title}</h2>
                         <div class="glass-panel p-8 rounded-xl">
-                            <p class="text-xl text-gray-200 leading-relaxed font-light">"${entry.content}"</p>
+                            <p class="text-xl md:text-2xl leading-relaxed text-gray-200 font-light italic">"${entry.content}"</p>
                         </div>
                     </div>
                 `;
-                container.appendChild(div);
+                container.appendChild(section);
             });
 
-            // Re-trigger Intersection Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
             }, { threshold: 0.1 });
+
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', renderEntries);
     </script>
 </body>
