@@ -13,7 +13,7 @@
         .font-modern { font-family: 'Tenor Sans', sans-serif; text-transform: uppercase; letter-spacing: 0.2em; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .glass-panel { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--border-glass); }
+        .glass-panel { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--border-glass); white-space: pre-line; line-height: 1.8; }
         .music-card { position: fixed; bottom: 20px; right: 20px; z-index: 100; background: rgba(0,0,0,0.6); border: 1px solid var(--amber-gold); padding: 10px 20px; border-radius: 50px; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(10px); }
         .share-btn { margin-top: 15px; font-size: 11px; color: var(--amber-gold); border: 1px solid rgba(251, 191, 36, 0.3); padding: 5px 15px; border-radius: 20px; transition: 0.3s; cursor: pointer; }
         .share-btn:hover { background: var(--amber-gold); color: black; }
@@ -25,126 +25,70 @@
     <div class="music-card">
         <span class="text-[10px] font-modern text-amber-500">Soul Music</span>
         <audio id="bg-music" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg"></audio>
-        <button onclick="toggleMusic()" class="bg-amber-500 text-black rounded-full p-2" id="music-btn">▶</button>
+        <button onclick="toggleMusic()" class="bg-amber-500 text-black rounded-full p-2 w-8 h-8 flex items-center justify-center" id="music-btn">▶</button>
     </div>
 
     <section class="h-screen flex flex-col items-center justify-center text-center px-6">
-        <span class="font-modern text-amber-500 text-xs mb-4 block">Personal Anthology</span>
-        <h1 class="font-elegant text-5xl md:text-8xl text-white mb-6">The Heart <br> <span class="text-amber-500">Touching</span> Diary</h1>
-        <p class="font-modern text-amber-200/60 text-sm tracking-[0.4em]">Hassan Jatoi</p>
+        <span class="font-modern text-amber-500 text-xs mb-4 block tracking-[0.4em]">Anthology of Emotions</span>
+        <h1 class="font-elegant text-5xl md:text-8xl text-white mb-6 leading-tight">The Heart <br> <span class="text-amber-500 italic">Touching</span> Diary</h1>
+        <p class="font-modern text-amber-200/60 text-sm tracking-[0.5em] mt-4 uppercase">Hassan Jatoi</p>
     </section>
 
     <main class="max-w-6xl mx-auto px-6 pb-32">
         <div id="diary-wall" class="space-y-32"></div>
     </main>
 
+    <footer class="py-24 text-center border-t border-amber-900/10 text-gray-600">
+        <p class="font-elegant text-2xl text-amber-600/50 mb-4 italic">The Journey of 40 Verses</p>
+        <p class="text-[10px] font-modern uppercase tracking-widest">Designed by Hassan Jatoi &copy; 2025</p>
+    </footer>
+
     <script>
-        // --- IS LIST MEIN NEECHAY ADD KARTE JAYEIN ---
         const diaryEntries = [
-            { title: "Hidden Truth", content: "Mystery wraps around my heart like fog that never lifts", img: "1477346611039-2e8a18632f7b" },
-            { title: "Fading Echoes", content: "Voices of the past linger where memories refuse to rest", img: "1508700115892-45ecd05ae2ad" },
-            { title: "Silent Betrayal", content: "Someone smiles while shadows carry the knife behind their back", img: "1516585317482-8f9f952c0197" },
-            { title: "Lonely Wanderer", content: "I walk through streets where the soul feels heavier than the body", img: "1476136230153-c41652377a7f" },
-            { title: "Eternal Questions", content: "Philosophy whispers why we love when love is only pain", img: "1481627834876-b7833e8f5570" },
-            { title: "Shattered Illusions", content: "Fiction turns real when imagination betrays reality", img: "1490730141103-6cac27aaab94" },
-            { title: "Emotional Storm", content: "Tears fall silently because no one hears the heart’s thunder", img: "1516589174468-471954f91d0e" },
-            { title: "Vanishing Paths", content: "Choices disappear like mist and leave only doubts behind", img: "1506126613408-da7969b5f2eb" },
+            // --- 20 DETAILED POEMS (AS PER YOUR REQUEST) ---
+            { title: "Separation", content: "Separation lingers quietly\nlike a shadow refusing to leave\nevery heartbeat counts the distance\nand time feels heavier than air", img: "1516585317482-8f9f952c0197" },
+            { title: "Love", content: "Love arrives softly\nlike a whisper through the night\nit teaches patience in longing\nand leaves lessons on the skin", img: "1516585367482-1214f07d396a" },
+            { title: "Sorrow", content: "Sorrow walks beside me\nsilent and patient like winter\nit turns ordinary days\ninto lessons the heart cannot forget", img: "1513297856402-02c03630dc1b" },
+            { title: "Heart", content: "The heart carries stories\nno lips dare speak aloud\nit beats in secret rhythms\nteaching pain without words", img: "1516589174468-471954f91d0e" },
+            { title: "Memory", content: "Memory keeps small treasures\nand old wounds alike\nevery thought returns\nwith a sweetness that aches", img: "1504198453319-5ce911baf5ea" },
+            { title: "Parting", content: "Parting is not a single moment\nit stretches across days and nights\nleaving echoes in empty rooms\nand footsteps that never return", img: "1506126613408-da7969b5f2eb" },
+            { title: "Life", content: "Life teaches in whispers\nnever in loud applause\nevery joy is borrowed\nevery loss leaves a mark", img: "1477346611039-2e8a18632f7b" },
+            { title: "Destiny", content: "Destiny has hands we cannot see\nit moves us before we notice\nlove is often delayed\nor taken too soon from us", img: "1481627834876-b7833e8f5570" },
+            { title: "Face", content: "Your face stays in my mind\neven when eyes are closed\nevery smile and glance\nhaunts the silence of my heart", img: "1518081461904-9d8f136351c2" },
+            { title: "Eyes", content: "Eyes speak what lips cannot\nthey hold secrets of love and pain\na single glance can heal\nor leave the soul restless", img: "1490730141103-6cac27aaab94" },
+            { title: "Sadness", content: "Sadness is patient\nit fills the empty corners\nlearns the rhythm of my breath\nand never demands attention", img: "1476136230153-c41652377a7f" },
+            { title: "Yearning", content: "Yearning is a quiet storm\nit pulls the heart endlessly\ntoward someone far away\nand teaches waiting without end", img: "1507525428034-b723cf961d3e" },
+            { title: "Philosophy", content: "Pain teaches truths silently\nhappiness often distracts\nthe world is a lesson\nwritten on broken hearts", img: "1509249023139-1d449965eb60" },
+            { title: "Silent Love", content: "Silent love whispers endlessly\nit carries hope without pride\nit waits in quiet corners\nand leaves beauty in absence", img: "1464618663641-bbdd760ae84a" },
+            { title: "Waiting", content: "Waiting stretches the soul\nteaches the language of patience\nevery moment feels like a lifetime\nyet hope refuses to vanish", img: "1529070538574-13e16734455a" },
+            { title: "Betrayal", content: "Betrayal leaves no scar\nit leaves empty spaces instead\ntrust dies quietly\nand the heart learns caution", img: "1516585317482-8f9f952c0197" },
+            { title: "Loneliness", content: "Loneliness walks beside me\nwithout complaint or noise\nit teaches the rhythm of the heart\nand the patience of time", img: "1499209974771-233a8328551e" },
+            { title: "Memories", content: "Memories drift softly\nsometimes sweet, sometimes sharp\nthey follow me like shadows\nnever allowing full rest", img: "1502134249126-9f3755a50d78" },
+            { title: "A Glance", content: "One glance changed everything\nit left traces in my soul\neven silence could not hide\nthe weight it carried", img: "1518081461904-9d8f136351c2" },
+            { title: "Time", content: "Time takes what it chooses\nit teaches loss and love\nevery moment shapes us\nand leaves footprints in the heart", img: "1451187580285-f216f6448b4e" },
 
-          { 
-    title: "The Weight of Silence", 
-    content: "Silence sits beside me like an old wound. It knows my name better than voices do. Every quiet moment carries a memory that refuses to sleep.", 
-    img: "1499209974771-233a8328551e" 
-},
-{ 
-    title: "Letters Written on Wet Sand", 
-    content: "I wrote your name where waves could read. The sea answered before you did. Each letter drowned softly like promises that feared staying.", 
-    img: "1507525428034-b723cf961d3e" 
-},
-{ 
-    title: "The Smile That Lied", 
-    content: "Your smile learned acting before love. It spoke warmth and carried knives. I trusted the light on your face, not knowing darkness rehearsed behind it.", 
-    img: "1516585317482-8f9f952c0197" 
-},
-{ 
-    title: "Loving You Quietly", 
-    content: "I loved you without noise or claims, like a prayer afraid of being heard. My heart spoke in small sacrifices you never noticed.", 
-    img: "1516585367482-1214f07d396a" 
-},
-{ 
-    title: "The House That Breathes at Night", 
-    content: "Walls whisper names I never told. Shadows move with borrowed memories. Something alive waits in corners, and it knows I am not alone.", 
-    img: "1509249023139-1d449965eb60" 
-},
-{ 
-    title: "Pain Teaches Better Than Love", 
-    content: "Love promised comfort and left early. Pain stayed and explained everything. Its lessons were slow and cruel, but they never lied.", 
-    img: "1513297856402-02c03630dc1b" 
-},
-{ 
-    title: "The Sea Knows My Secrets", 
-    content: "I speak where no one interrupts. The sea keeps my confessions safe. Salt understands tears, and horizons don’t judge.", 
-    img: "1505118380757-91f5f5632de0" 
-},
-{ 
-    title: "Betrayed by a Promise", 
-    content: "You wrapped lies in future tense and called it hope. Trust broke quietly like glass under water—no sound, just damage.", 
-    img: "1506461973418-490e5a88c224" 
-},
-{ 
-    title: "You Felt Like Home", 
-    content: "You felt like a place I belonged before I knew what belonging meant. Now every place feels temporary because you left first.", 
-    img: "1476136230153-c41652377a7f" 
-},
-{ 
-    title: "Midnight Has a Memory", 
-    content: "Night remembers what I hide. It opens old rooms in my chest. Sleep avoids my name because truth wakes up here.", 
-    img: "1504198453319-5ce911baf5ea" }
-           
-           { 
-    title: "A Heart That Forgot How to Hope", 
-    content: "Hope used to knock softly\nNow even silence feels loud\nMy heart waits without direction\nLike a train with no tracks\nDreams sit folded in corners\nAfraid of being opened\nFaith looks tired these days\nIt learned loss too early", 
-    img: "1507608830320-3dec43402779" 
-},
-{ 
-    title: "Crying Without Sound", 
-    content: "Tears learned to stay inside\nBecause the world got impatient\nMy chest floods quietly\nWhile my face pretends strength\nNo one hears internal storms\nThey clap for my calm", 
-    img: "1516585367482-1214f07d396a" 
-},
-{ 
-    title: "The Loneliness After Goodbye", 
-    content: "After you left\nEven air felt unfamiliar\nRooms forgot my name\nTime stopped asking questions", 
-    img: "1476136230153-c41652377a7f" 
-},
-{ 
-    title: "Funeral of My Dreams", 
-    content: "I carried my dreams on my shoulders\nLike bodies no one claimed\nThey were young once\nFull of color and noise\nNow they sleep without future\nWrapped in almosts and maybes\nNo prayers were spoken\nOnly silence attended", 
-    img: "1509249023139-1d449965eb60" 
-},
-{ 
-    title: "A Room Full of Absence", 
-    content: "Absence has weight\nIt sits where you were\nChairs remember your shape\nWalls keep unfinished sentences\nThe room breathes slowly\nAs if afraid to forget", 
-    img: "1499209974771-233a8328551e" 
-},
-{ 
-    title: "Sadness Wears My Name", 
-    content: "Sadness answers when I am called\nIt knows my walk and voice\nPeople confuse us often\nWe look too much alike", 
-    img: "1513297856402-02c03630dc1b" 
-},
-{ 
-    title: "Nights That Refuse to End", 
-    content: "Night stretches like a wound\nRefusing to close\nClocks lose their authority\nWhen thoughts take control\nSleep negotiates and fails\nMemories keep rehearsing pain\nDarkness learns patience\nAnd waits with me", 
-    img: "1504198453319-5ce911baf5ea" 
-},
-{ 
-    title: "Love Turned Into Ash", 
-    content: "Love burned beautifully once\nWarming every corner of me\nThen it chose silence\nAnd called it ending\nNow only ash remains\nStill warm with memory", 
-    img: "1464618663641-bbdd760ae84a" } 
-        
-            // AB AGAR NAYI ENTRY ADD KARNI HO TO YAHAN PASTE KAREIN:
-            // { title: "Aapka Title", content: "Aapki Line", img: "PhotoID" },
-
+            // --- 20 ADDITIONAL DEEP ENTRIES ---
+            { title: "Forgotten Paths", content: "We walk on roads we once loved\nnot realizing they have changed\nthe dust of time covers everything\nexcept the way I remember you", img: "1506126613408-da7969b5f2eb" },
+            { title: "Broken Promises", content: "Words were spoken like starlight\nbright but unreachable now\nyou promised forever in a second\nand left a second that feels like forever", img: "1506461973418-490e5a88c224" },
+            { title: "The Moon's Grief", content: "The moon watches my sleepless nights\nit knows why I look at the sky\nit carries the weight of lovers\nwho never found their way home", img: "1504198453319-5ce911baf5ea" },
+            { title: "Winter in the Soul", content: "Spring came for the world outside\nbut my heart stayed in December\nwaiting for a warmth you took\nwhen you closed the door behind you", img: "1486577322971-da0c27303f8a" },
+            { title: "Empty Chairs", content: "Tea for two turned into tea for one\nthe chair opposite me is heavy\nwith an absence that talks\nand a silence that screams your name", img: "1499209974771-233a8328551e" },
+            { title: "Shadow Play", content: "I dance with my own loneliness\nit is the only partner that stays\nit knows my rhythm by heart\nand never steps on my wounds", img: "1502134249126-9f3755a50d78" },
+            { title: "Sunset Promises", content: "Every sunset reminds me of endings\nhow beautiful they can look\nbut the darkness that follows\nis where the real story begins", img: "1477346611039-2e8a18632f7b" },
+            { title: "The Violin's Ache", content: "My heart is a string pulled too tight\nwaiting for a bow to touch it\nbut when the music finally plays\nit is a song of pure mourning", img: "1509249023139-1d449965eb60" },
+            { title: "Whispering Walls", content: "This room knows too much about us\nit kept the warmth of our laughter\nnow it exhales a cold draft\nthat smells like a finished story", img: "1516585317482-8f9f952c0197" },
+            { title: "Distant Stars", content: "We are like stars in different galaxies\nwe can see each other's light\nbut the space between us is infinite\nand the cold is absolute", img: "1481627834876-b7833e8f5570" },
+            { title: "Echo of You", content: "I hear your laugh in the rustle of leaves\nI see your shadow in the morning mist\nYou are everywhere and nowhere at all\nA beautiful echo I cannot let go", img: "1506126613408-da7969b5f2eb" },
+            { title: "The Old Clock", content: "Time stopped the day you said goodbye\nThe hands move but the hours feel dead\nWaiting for a future that refuses to arrive\nLiving in a past that won't stay buried", img: "1504198453319-5ce911baf5ea" },
+            { title: "Salt and Rain", content: "Tears are just rain from a private storm\nSalt water for a heart that is thirsty for peace\nI let it fall until the sky in me is clear\nAnd the pain becomes a quiet river", img: "1516589174468-471954f91d0e" },
+            { title: "Unspoken Vows", content: "I made a promise to the silence\nTo keep your name safe from the world\nNo one knows the weight I carry\nOr the love I hide in the dark", img: "1513297856402-02c03630dc1b" },
+            { title: "The Bridge", content: "I am standing on a bridge between us\nOne side is burning, the other is fog\nI cannot go back and I am afraid to move\nSo I watch the water carry my life away", img: "1451187580285-f216f6448b4e" },
+            { title: "Dried Flowers", content: "I keep your words in a glass jar\nLike petals that have lost their scent\nThey are fragile and dry to the touch\nBut they are all I have left of our spring", img: "1507608830320-3dec43402779" },
+            { title: "The Anchor's Weight", content: "I am sinking slowly into my thoughts\nThe deeper I go, the quieter it gets\nDarkness is a comfort when the light hurts\nAnd the bottom is a place to rest", img: "1505118380757-91f5f5632de0" },
+            { title: "Borrowed Time", content: "We were a story written in pencil\nBeautiful, but destined to be erased\nI still try to trace the lines you left\nBefore the paper turns completely white", img: "1516585367482-1214f07d396a" },
+            { title: "Glass Heart", content: "Handle my memories with care\nThey have sharp edges and break easily\nOne wrong thought and I am in pieces\nTrying to glue a soul back together", img: "1529070538574-13e16734455a" },
+            { title: "The Final Page", content: "Every story must find its end\nEven the ones we wanted to last\nI am closing the book now, Hassan\nAnd leaving the rest to the wind", img: "1481627834876-b7833e8f5570" }
         ];
-        // --- LIST KHATAM ---
 
         function toggleMusic() {
             const music = document.getElementById('bg-music');
@@ -154,7 +98,8 @@
         }
 
         function shareWhatsApp(title, content) {
-            const text = `*${title}*\n\n"${content}"\n\n_Read more on Hassan Jatoi's Diary_`;
+            const cleanContent = content.replace(/\n/g, ' ');
+            const text = `*${title}*\n\n"${cleanContent}"\n\n_Diary of Hassan Jatoi_`;
             window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
         }
 
@@ -163,17 +108,18 @@
             diaryEntries.forEach((entry, idx) => {
                 const isEven = idx % 2 === 0;
                 const div = document.createElement('div');
-                div.className = `reveal flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`;
+                div.className = `reveal flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`;
                 div.innerHTML = `
-                    <div class="w-full md:w-1/2 overflow-hidden rounded-2xl relative">
+                    <div class="w-full md:w-1/2 overflow-hidden rounded-2xl relative shadow-2xl">
                         <div class="image-container aspect-[4/3]">
-                            <img src="https://images.unsplash.com/photo-${entry.img}?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale">
+                            <img src="https://images.unsplash.com/photo-${entry.img}?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:scale-105 transition-all duration-1000" loading="lazy">
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 text-center ${isEven ? 'md:text-left' : 'md:text-right'}">
-                        <h2 class="font-elegant text-3xl text-white mb-4">${entry.title}</h2>
-                        <div class="glass-panel p-6 rounded-xl italic text-gray-300">"${entry.content}"</div>
-                        <button onclick="shareWhatsApp('${entry.title}', '${entry.content}')" class="share-btn">Share on WhatsApp</button>
+                        <span class="text-amber-600 font-modern text-[9px] mb-2 block tracking-widest uppercase italic">Memory.0${idx + 1}</span>
+                        <h2 class="font-elegant text-3xl md:text-5xl text-white mb-6">${entry.title}</h2>
+                        <div class="glass-panel p-8 rounded-xl italic text-gray-300 text-lg md:text-xl shadow-inner">"${entry.content}"</div>
+                        <button onclick="shareWhatsApp('${entry.title}', '${entry.content}')" class="share-btn">Share Verse</button>
                     </div>`;
                 container.appendChild(div);
             });
